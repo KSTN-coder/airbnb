@@ -1,2 +1,5 @@
 robotframework==7.0.1
 robotframework-seleniumlibrary==6.5.0
+DateTime==5.5
+webdriver-manager==3.8.0
+urllib3==1.26.9
