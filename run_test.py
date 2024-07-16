@@ -3,6 +3,7 @@ import shutil
 import subprocess
 
 # Define the output directory path
+
 output_dir = "output"
 
 # Function to clean the output directory

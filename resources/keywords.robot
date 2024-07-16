@@ -1,17 +1,14 @@
 *** Settings ***
-Library           SeleniumLibrary
+Library    SeleniumLibrary
+Library    Collections
 Library    DateTime
+Library    BuiltIn
 Resource          ../resources/repository.robot
 *** Keywords ***
 Open Test Browser
     Open Browser    https://www.airbnb.com/    browser=chrome
     Maximize Browser Window
 
-Login To Airbnb
-
-    Click Element    ${LOGIN_BUTTON}
-    Click Element    //div[text()='Log in']
-    
 Enter Search Location
     [Arguments]  ${location}
     Input Text  ${SEARCH_INPUT}  ${location}
@@ -47,3 +44,13 @@ Add Who All Increase
     Click Element    ${INFANTS_INCREASE}
     sleep    0.5s
     Click Element    ${PETS_INCREASE}
+
+Click Element 5 Times
+    [Arguments]    ${locator}
+    ${attempt}=    Set Variable    0
+    FOR    ${index}    IN RANGE    5
+        ${attempt}=    Evaluate    ${attempt} + 1
+        Log    Attempting to click ${locator}, attempt ${attempt}
+        Click Element    ${locator}
+        Sleep    1s
+    END

@@ -5,12 +5,12 @@ Library           DateTime
 Resource          ../../resources/keywords.robot
 Resource          ../../resources/repository.robot
 Resource          ../../resources/variables.robot
-
-
+Test Teardown    Close Browser
 *** Test Cases ***
-TC_001 Basic Location Search
-    Open Test Browser
+Basic Location Search
+    [Tags]        TC_001
     [Documentation]    Verify searching by location returns results.
+    Open Test Browser
     Input Text    ${SEARCH_INPUT}    ${LOCATION_NEWYORK}
     Click Element    ${SEARCH_BUTTON}  
     Wait Sleep
@@ -19,11 +19,11 @@ TC_001 Basic Location Search
     ${text}=  Get Text From Element  ${SEARCH_RESULTS}
     log    ${text}
     Should Be Equal        ${text}    ${expected_result}
-    Close Browser
 
-TC_002 Search With Dates
-    Open Test Browser
+Search With Dates
+    [Tags]        TC_002
     [Documentation]    Verify that search with dates results correctly.
+    Open Test Browser
     Input Text    ${SEARCH_INPUT}    ${LOCATION_BANGKOK}
     Check In Check Out
     Click Element    ${SEARCH_BUTTON}
@@ -41,12 +41,12 @@ TC_002 Search With Dates
     log    ${datetime}
     Should Be Equal    ${current}    ${datetime}
     Screenshot
-    Close Browser
 
 
-TC_003 Search With Dates And Who
-    Open Test Browser
+Search With Dates And Who
+    [Tags]    TC_003
     [Documentation]    Verify that search with dates and who results correctly.
+    Open Test Browser
     Input Text    ${SEARCH_INPUT}    ${LOCATION_PHIPHI}
     Check In Check Out
     Wait Sleep
@@ -75,4 +75,3 @@ TC_003 Search With Dates And Who
     Wait Sleep
     Should Be Equal    ${current}    ${datetime}
     Should Be Equal    ${who_increse}    ${who_reserve}
-    Close Browser
